@@ -1,0 +1,15 @@
+#version: '3.8'  ---this line is no longer needed for docker desktop or docker compose v2
+
+services:
+  stockportfolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: stockportfoliodb
+    volumes:
+      - ./app:/app/app          # Mount your Python code for live updates
+      - ./data:/app/data        # Mount your CSVs for live data
+    environment:
+      - PYTHONDONTWRITEBYTECODE=1
+      - PYTHONUNBUFFERED=1
+    tty: true

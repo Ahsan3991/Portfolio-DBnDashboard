@@ -1,0 +1,5 @@
+Schemas for companies, transactions, and dividends CSV files:
+- company_name,sector,ticker_symbol
+- company_id,transaction_date,number_of_shares,share_price,sales_tax,commission_tax,cdc_charges
+- company_id,dividend_date,payout_ratio,cgt_tax,net_dividend_payout
+- DATE format for all tables is  "YY-MM-DD"
