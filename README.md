@@ -125,6 +125,11 @@ The database will be created at `data/stock_portfolio.db`
 - You can use this Youtube video to learn how to connect your database to PowerBI: [How to connect db file to PowerBI](https://www.youtube.com/watch?v=v9OG5Ry5zDU)
 - Once connected you can get all the tables in powerBI and start creating visuals as per your desire
 
+## Images for Dashboard
+<img src="./images/dashboard.png" alt="Alt text" width="300"/>
+
+
+
 
 ## License
 MIT License
