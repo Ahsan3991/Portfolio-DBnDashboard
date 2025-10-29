@@ -7,6 +7,7 @@ from extract import extract
 from transform import transform
 from load import load_to_sql
 from logs import log_operation
+from datetime import datetime
 
 
 if __name__ == "__main__":
@@ -41,17 +42,24 @@ if __name__ == "__main__":
     # create realtime_prices dataframe
     realtime_prices_df = pd.DataFrame({
         'ticker_symbol': companies_df['ticker_symbol'].to_list(),
-        'realtime_prices': prices_list
+        'share_price': prices_list
     })
     realtime_prices_df = realtime_prices_df.merge(company_ids, on='ticker_symbol', how='inner')
-    realtime_prices_df = realtime_prices_df[['company_id', 'realtime_prices']]
+    realtime_prices_df = realtime_prices_df[['company_id', 'share_price']]
+    realtime_prices_df['last_updated'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S') #date format for last updated column
 
     #load the realtime_price_df to sql
     log_operation("Loading real time prices table")
     load_to_sql(realtime_prices_df = realtime_prices_df)
+
+    print(f"Real time prices dataframe loaded: \n {realtime_prices_df}")
     conn.close()
 
     log_operation("All tables and respective data loaded successfully, calculating daily unrealized pnl")
 
     from calculations import compute_daily_unrealized_pnl
     compute_daily_unrealized_pnl(DB_PATH)
+
+    conn = sqlite3.connect(DB_PATH)
+    unrealized_pnl = pd.read_sql("SELECT * FROM daily_unrealized_pnl;", conn)
+    print(unrealized_pnl)

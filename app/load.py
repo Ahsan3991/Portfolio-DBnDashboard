@@ -15,7 +15,7 @@ def load_to_sql(companies_df = None, transactions_df = None, dividends_df = None
     #create tables
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS companies (
-    company_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    company_id INTEGER PRIMARY KEY,
     company_name TEXT,
     sector TEXT,
     ticker_symbol TEXT
@@ -52,7 +52,7 @@ def load_to_sql(companies_df = None, transactions_df = None, dividends_df = None
     CREATE TABLE IF NOT EXISTS realtime_prices (
     price_id INTEGER PRIMARY KEY AUTOINCREMENT,
     company_id INTEGER,
-    realtime_prices REAL NOT NULL,
+    share_price REAL NOT NULL,
     last_updated TEXT DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (company_id) REFERENCES companies (company_id)
     );
@@ -73,19 +73,17 @@ def load_to_sql(companies_df = None, transactions_df = None, dividends_df = None
     );
     ''')
 
-
-
     #load csv to tables
     if companies_df is not None:
-        companies_df.to_sql('companies', conn, if_exists='append', index=False)
+        companies_df.to_sql('companies', conn, if_exists='append', index=False) #static master data should not duplicate
     if transactions_df is not None:
-        transactions_df.to_sql('transactions', conn, if_exists='replace', index=False)
+        transactions_df.to_sql('transactions', conn, if_exists='replace', index=False) #
     if dividends_df is not None:
         dividends_df.to_sql('dividends', conn, if_exists='replace', index=False)
     if realtime_prices_df is not None:
-        realtime_prices_df.to_sql('realtime_prices', conn, if_exists='append', index=False)
+        realtime_prices_df.to_sql('realtime_prices', conn, if_exists='replace', index=False) #only need the latest prices table
     if grouped is not None:
-        grouped.to_sql('daily_unrealized_pnl', conn, if_exists='append', index=False)
+        grouped.to_sql('daily_unrealized_pnl', conn, if_exists='append', index=False) #keeps latest and historic values
 
     conn.commit()
     conn.close()
