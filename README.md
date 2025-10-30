@@ -1,15 +1,21 @@
-# WELCOME TO PORTFOLIO DATABASE MANAGEMENT AND DASHBOARD PROJECT
+# WELCOME TO DATABASE MANAGEMENT AND DASHBOARD PROJECT
+
+
+# DISCLAIMER
+This is a dummy portfolio database and numbers for transactions and dividends are generated randomly using random dates. 
+Please do not take this as an investment advise or a buy and sell call. Do your own research before investing in
+any stock.
 
 # OBJECTIVE 
-The goal of this project is to create a simple database using SQLite3
-to store information regarding the PSX stocks in my portfolio. I have got the idea 
-for the project from Google sheets where I used to store this information and perform
+The goal of this project is to create a dummy database using SQLite3
+to store information regarding the PSX stocks in a portfolio. I have got the idea 
+for the project from Google sheets where I used to store the information for my ghost portfolio and perform
 different analysis on it, but sheets has its limitations with scalability and customization,
 a relational database allows me to scale as I want and also perform various calculations on the
 go. The second goal is to create a dashboard, so I can visualize in real-time the progress of my 
 portfolio for which I have used PowerBI desktop version. While this visualization can be achieved
 via apps like "investify" but they have tons of ads, and they tend to be buggy plus you only see what 
-the app designer wants you to see by creating my own dashboard I have the power to control it and 
+the app designer wants you to see by creating a dashboard I have the power to control it and 
 customize it.
 
 # ETL PIPELINE
