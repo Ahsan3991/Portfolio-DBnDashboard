@@ -126,7 +126,8 @@ The database will be created at `data/stock_portfolio.db`
 - Once connected you can get all the tables in powerBI and start creating visuals as per your desire
 
 ## Images for Dashboard
-<img src="./images/dashboard.png" alt="Alt text" width="300"/>
+<img src="./images/dashboard.png" alt="Alt text" width="500"/>
+<img src = "./images/ERD.png" alt="Alt text" width="500"/>
 
 
 
