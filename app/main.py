@@ -8,6 +8,7 @@ from transform import transform
 from load import load_to_sql
 from logs import log_operation
 from datetime import datetime
+import sqlite3
 
 
 if __name__ == "__main__":
@@ -31,7 +32,7 @@ if __name__ == "__main__":
     log_operation("Data loading complete, Preparing real time prices table")
     #create the realtime prices data frame
     #connect to database
-    import sqlite3
+
 
     DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../data/stock_portfolio.db')
     conn = sqlite3.connect(DB_PATH)

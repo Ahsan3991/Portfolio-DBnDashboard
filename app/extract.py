@@ -23,7 +23,7 @@ def extract():
     transactions_df = pd.read_csv(transactions_csv, header=None, skipinitialspace=True)
 
     #Set correct column names
-    companies_df.columns = ['company_name', 'sector', 'ticker_symbol']
+    companies_df.columns = ['company_id', 'company_name', 'sector', 'ticker_symbol']
     dividends_df.columns=['company_id', 'dividend_date', 'payout_ratio', 'cgt_tax', 'net_dividend_payout']
     transactions_df.columns=['company_id', 'transaction_date', 'number_of_shares', 'share_price', 'sales_tax', 'commission_tax', 'cdc_charges']
 

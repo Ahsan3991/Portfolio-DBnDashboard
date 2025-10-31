@@ -16,9 +16,9 @@ def load_to_sql(companies_df = None, transactions_df = None, dividends_df = None
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS companies (
     company_id INTEGER PRIMARY KEY,
-    company_name TEXT,
+    company_name TEXT UNIQUE,
     sector TEXT,
-    ticker_symbol TEXT
+    ticker_symbol TEXT UNIQUE
     );
     ''')
 
@@ -75,6 +75,8 @@ def load_to_sql(companies_df = None, transactions_df = None, dividends_df = None
 
     #load csv to tables
     if companies_df is not None:
+        existing_ids = pd.read_sql("SELECT company_id FROM companies", conn)['company_id']
+        companies_df = companies_df[~companies_df['company_id'].isin(existing_ids)]
         companies_df.to_sql('companies', conn, if_exists='append', index=False) #static master data should not duplicate
     if transactions_df is not None:
         transactions_df.to_sql('transactions', conn, if_exists='replace', index=False) #
