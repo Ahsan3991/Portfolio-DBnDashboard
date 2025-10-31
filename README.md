@@ -83,12 +83,12 @@ cd StockPortfolio-DB
 
 ### 2. Prepare Data Files
 Create a `data/` folder and add your CSV files (just enter data as per column names without entering column names):
-- `companies.csv` - Company information using columns ---> (company_name, sector, ticker_symbol)
+- `companies.csv` - Company information using columns ---> (company_id,company_name, sector, ticker_symbol)
 - `transactions.csv` - Transaction history using columns ---> (company_id, transaction_date, number_of_shares, share_price, sales_tax, commission_tax, cdc_charges)
 - `dividends.csv` - Dividend information using columns ---> (company_id, dividend_date, payout_ratio, cgt_tax, net_dividend_payout)
 
 #### Important things to consider here: 
-- That company_id has to be entered correctly for transactions and dividends, this can be achieved by keeping the tab of companies.
+- That company_id has to be entered correctly for transactions and dividends, this can be achieved by keeping the tab of number of companies in order
 that you hold in companies table, their index is their id so first company in the table will have id = 1 and third company will have the id = 3 and so on.
 - Please use the same column structure as mentioned when creating CSVs, if you have an Excel file then convert it to CSV before putting it into the directory.
 - The values for all the columns with Tax, charges and commissions can be NULL or ZERO.
@@ -128,7 +128,7 @@ The database will be created at `data/stock_portfolio.db`
 
 ## Dashboard Design
 - Since the database is hosted locally as a SQLite3 db, connecting it to PowerBI or Tableau will require and ODBC driver.
-- You can use this Youtube video to learn how to connect your database to PowerBI: [How to connect db file to PowerBI](https://www.youtube.com/watch?v=v9OG5Ry5zDU)
+- You can use this YouTube video to learn how to connect your database to PowerBI: [How to connect db file to PowerBI](https://www.youtube.com/watch?v=v9OG5Ry5zDU)
 - Once connected you can get all the tables in powerBI and start creating visuals as per your desire
 
 ## Images for Dashboard

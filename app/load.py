@@ -76,7 +76,7 @@ def load_to_sql(companies_df = None, transactions_df = None, dividends_df = None
     #load csv to tables
     if companies_df is not None:
         existing_ids = pd.read_sql("SELECT company_id FROM companies", conn)['company_id']
-        companies_df = companies_df[~companies_df['company_id'].isin(existing_ids)]
+        companies_df = companies_df[~companies_df['company_id'].isin(existing_ids)] #remove duplicate entries before adding to table
         companies_df.to_sql('companies', conn, if_exists='append', index=False) #static master data should not duplicate
     if transactions_df is not None:
         transactions_df.to_sql('transactions', conn, if_exists='replace', index=False) #
