@@ -11,8 +11,7 @@ from datetime import datetime
 import sqlite3
 
 
-if __name__ == "__main__":
-
+def main():
     #extract data
     log_operation("Extracting data")
     companies_df, transactions_df, dividends_df, prices_list = extract()
@@ -64,3 +63,7 @@ if __name__ == "__main__":
     conn = sqlite3.connect(DB_PATH)
     unrealized_pnl = pd.read_sql("SELECT * FROM daily_unrealized_pnl;", conn)
     print(unrealized_pnl)
+
+
+if __name__ == "__main__":
+    main()
