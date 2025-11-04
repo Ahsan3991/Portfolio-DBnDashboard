@@ -3,3 +3,4 @@ bs4
 lxml
 requests
 playwright
+pip-update
